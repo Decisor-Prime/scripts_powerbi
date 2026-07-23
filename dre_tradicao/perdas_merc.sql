@@ -17,7 +17,7 @@ left join
         on sdm.codcliente = sdg.codcliente
         and sdg.idgrupo = sdm.idgrupo
 where
-	fpem.sk_decisor in (2,77)
+	fpem.sk_decisor in (2)
 	and fpem.qtdeestoque <> 0
 	and fpem.data_geracao >= '20260101'
 	and fpem.data_geracao = date_trunc('month', fpem.data_geracao)
