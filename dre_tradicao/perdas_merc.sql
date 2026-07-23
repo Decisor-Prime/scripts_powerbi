@@ -22,7 +22,4 @@ where
 	and fpem.data_geracao >= '20260101'
 	and fpem.data_geracao = date_trunc('month', fpem.data_geracao)
 	and sdg.grupocompleto like any(array['%AUT%', '%CONVENIÊNCIA%'])
-group by
-	bkey_empresa,
-	data,
-	split_part(sdg.grupocompleto, ' /',1)
+group by 1,2,3
