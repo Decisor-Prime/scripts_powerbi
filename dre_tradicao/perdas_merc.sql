@@ -1,4 +1,4 @@
-select
+SELECT ---------TESTE 123----------
 	sk_decisor || '-' || id_empresa bkey_empresa,
 	date_trunc('month', fpem.data_geracao)::date data,
 	split_part(sdg.grupocompleto, ' /',1) grupo,
