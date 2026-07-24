@@ -10,6 +10,6 @@ left join stg.stg_dproduto_grupo sdg
         on de.codcliente = sdg.codcliente
         and de.idgrupo = sdg.idgrupo
 where de.codcliente = 2
-and "data" >= '20260701'
+and "data" >= '20260101'
 --and not sdg.grupocompleto LIKE 'ARLA'
 group by 1,2,3,4
