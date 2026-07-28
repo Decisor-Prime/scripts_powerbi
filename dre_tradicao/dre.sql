@@ -273,7 +273,7 @@ with DRE_2026 as (
 			0 as qtd,
 			'final_despesas' origem
 		from dre.final_despesas
-			WHERE cod_conta_nv2 not in ('1.01','1.02','1.03','1.04','1.05','1.08','1.10','4.11')
+			WHERE cod_conta_nv2 not in ('1.01','1.02','1.03','1.04','1.05','1.08','1.10','4.11','4.07')
 			and cod_conta_nv2 is not null
 			and sk_decisor in (2,77,80,84,85)
 			AND ((idempresa IN (1019) AND dtlcto >= '20251201')
