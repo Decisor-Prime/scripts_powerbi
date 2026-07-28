@@ -13,13 +13,22 @@ with DRE_2026 as (
 		from dre.final_faturamento ff
 		where cod_conta_nv2 is not null
 			and ff.sk_decisor in (2,77,80,84,85)
-			GROUP BY 
-			sk_decisor			,
-			idempresa			,
-			dtlcto				,
-			cod_conta_nv2		,
-			grupo,		
-			subgrupo
+			GROUP BY 1,2,3,4,5,6
+		UNION ALL
+	--RECARGA CELULARES 1.7--
+		SELECT
+			sk_decisor,
+			idempresa,
+			dtlcto,
+			'1.07' cod_conta_nv2,
+			'RECARGAS CELULARES' grupo,
+			'RECARGAS CELULARES' subgrupo,
+			Sum(vlr_faturamento) vlr,
+			0 as qtd
+		from dre.final_faturamento fd
+		where cod_conta_nv2 is null and grupo is null
+			 and fd.sk_decisor in (2,77)
+		group by 1,2,3,4,5,6
 		UNION ALL
 	--RECEITAS COMPANHIAS (REBATES) 1.8--
 		SELECT
@@ -93,15 +102,24 @@ with DRE_2026 as (
 		from dre.final_faturamento cff
 		where cod_conta_nv2 is not null
 			and cff.sk_decisor in (2,77,80,84,85)
-			GROUP BY 
-			sk_decisor						,
-			idempresa						,
-			dtlcto							,
-			cod_conta_nv2					,
-			grupo							,		
-			subgrupo 
+			GROUP BY 1,2,3,4,5,6
 		UNION ALL 
-	--CUSTO COMPANHIAS (REBATES) 1.8--
+	--CUSTO RECARGA CELULARES 1.7--
+		SELECT
+			sk_decisor,
+			idempresa,
+			dtlcto,
+			'4.07' cod_conta_nv2,
+			'RECARGAS CELULARES' grupo,
+			'RECARGAS CELULARES' subgrupo,
+			sum(vlr) vlr,
+			0 qtd
+		from dre.final_despesas fd
+		where cod_conta_nv2 = '4.07'
+		and fd.dtlcto >= '20260101'
+			 and fd.sk_decisor in (2)
+		group by 1,2,3,4,5,6
+		UNION ALL--CUSTO COMPANHIAS (REBATES) 1.8--
 		select
 			sk_decisor,
 			idempresa,
@@ -200,13 +218,7 @@ with DRE_2026 as (
 			'faturamento' origem
 		FROM FATURAMENTO ft
 		where ft.cod_conta_nv2 is not null
-		GROUP BY 
-			sk_decisor						,
-			idempresa						,
-			dtlcto							,
-			cod_conta_nv2,
-			grupo							,
-			subgrupo 
+		GROUP BY 1,2,3,4,5,6
 		--CUSTO--
 		union ALL
 			SELECT 
@@ -221,13 +233,7 @@ with DRE_2026 as (
 			'custo' origem
 		FROM CUSTO CT
 		where ct.cod_conta_nv2 is not null
-		GROUP BY 
-			sk_decisor						,
-			idempresa						,
-			dtlcto							,
-			cod_conta_nv2,
-			grupo							,
-			subgrupo
+		GROUP BY 1,2,3,4,5,6
 			--MARGEM--
 		union ALL
 			SELECT 
@@ -242,13 +248,7 @@ with DRE_2026 as (
 			'margem' origem
 		FROM MARGEM mg
 		where mg.cod_conta_nv2 is not null
-		GROUP BY 
-			sk_decisor						,
-			idempresa						,
-			dtlcto							,
-			cod_conta_nv2,
-			grupo							,
-			subgrupo 		
+		GROUP BY 1,2,3,4,5,6	
 			
 	-----------------------
 	-- FINAL FATURAMENTO --
