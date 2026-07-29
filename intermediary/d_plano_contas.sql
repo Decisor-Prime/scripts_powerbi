@@ -1,0 +1,31 @@
+select
+	dw_idconta,
+	codcliente || '-' || conta as conta_rel,
+	codcliente,
+	idconta,
+	idcentrocustopai,
+	descricao,
+	conta,
+	dre,
+	nivel,
+	descricao_1,
+	descricao_2,
+	descricao_3,
+	descricao_4,
+	descricao_5,
+	descricao_6,
+	descricao_7,
+	descricao_8,
+	conta_1,
+	conta_2,
+	conta_3,
+	conta_4,
+	conta_5,
+	conta_6,
+	conta_7,
+	conta_8,
+	drep
+from
+	dw.dim_plancontas
+where
+	codcliente in (select sk_decisor from vw_clientes_decisor)
