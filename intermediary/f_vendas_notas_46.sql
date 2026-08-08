@@ -5,7 +5,6 @@ select
 		else dp.produto_nv1
 	end as Categoria,
 	v.datalcto data,
-
 	COUNT(distinct v.numero) notas,
 	SUM((qtdlcto * vrlcto)-vrdesconto) vlr
 from
@@ -26,4 +25,4 @@ where
 	and v.is_active
 	and v.tipodocumento in ( '0','1')
 	and i.cfop not in ('5949', '5927')
-group by 1,2,3,4
+group by 1,2,3
