@@ -10,10 +10,10 @@ SELECT
    case 
    		when v.idvendedor is null then null
    		else v.codcliente || '-' || split_part(COALESCE(v.idvendedor::text, ''), '.', 1) end as idvendedor,
+    v.trasmissaodocumento,
+   p.meiopagamento,
    sum(i.qtdlcto) as qtd,
-   sum(i.vrlcto) as vlr,
-   v.trasmissaodocumento,
-   p.meiopagamento
+   sum(i.vrlcto) as vlr 
  FROM stg.stg_fvenda v
  left join stg.stg_fvenda_itens i
    on i.pk = v.pk and i.codcliente = v.codcliente and i.idempresa = v.idempresa
@@ -22,4 +22,4 @@ SELECT
  where v.codcliente in (select sk_decisor from vw_clientes_decisor)
    and v.trasmissaodocumento = 'Cancelada'            
    and v.is_active
-   group by 1,2,3,4,5,6,7,8,9,10,11,12
+   group by 1,2,3,4,5,6,7,8,9
