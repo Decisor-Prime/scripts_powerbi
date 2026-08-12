@@ -342,6 +342,6 @@ with DRE_2026 as (
 	)
 	select * from DRE_2026
 	where dtlcto >= '20260101'
-	and sk_decisor in (2,77,80,84,85)
+	and sk_decisor in (2,77,80,84,85,86)
 union ALL
 select * from dre.resultado_consolidado_2025 rc 
