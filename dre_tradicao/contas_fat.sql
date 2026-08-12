@@ -4,11 +4,13 @@ WITH BASE_FATURAMENTO AS (
         	WHEN SK_DECISOR = 80 then 80
         	when SK_DECISOR = 84 then 84
         	when SK_DECISOR = 85 then 85
+        	when SK_DECISOR = 86 then 86
         	else null end as SK_DECISOR,
         CASE 
             WHEN SK_DECISOR = 80 AND SUBGRUPO LIKE '%DIESEL%' THEN '1.01' 
             when SK_DECISOR = 84 THEN '1.05'
 			when SK_DECISOR = 85 THEN '1.04'
+			when SK_DECISOR = 86 THEN '1.04'
 			else '1.04'
         END as COD_CONTA_NV2,
         CASE 
@@ -21,18 +23,20 @@ WITH BASE_FATURAMENTO AS (
             ELSE SUBGRUPO 
         END as SUBGRUPO_AJUSTADO
     FROM DRE.FINAL_FATURAMENTO ff
-    WHERE ff.SK_DECISOR IN (80,84,85) and not SUBGRUPO isnull
+    WHERE ff.SK_DECISOR IN (80,84,85,86) and not SUBGRUPO isnull
     union all
       SELECT 
         case 
         	WHEN SK_DECISOR = 80 then 80
         	when SK_DECISOR = 84 then 84
         	when SK_DECISOR = 85 then 85
+        	when SK_DECISOR = 85 then 86
         	else null end as SK_DECISOR,
         CASE 
             WHEN SK_DECISOR = 80 AND SUBGRUPO LIKE '%DIESEL%' THEN '4.01' 
             when SK_DECISOR = 84 THEN '4.05'
 			when SK_DECISOR = 85 THEN '4.04'
+			when SK_DECISOR = 86 THEN '4.04'
 			else '4.04'
         END as COD_CONTA_NV2,
         CASE 
@@ -45,18 +49,20 @@ WITH BASE_FATURAMENTO AS (
             ELSE SUBGRUPO 
         END as SUBGRUPO_AJUSTADO
     FROM DRE.FINAL_FATURAMENTO ff
-    WHERE ff.SK_DECISOR IN (80,84,85) and not SUBGRUPO isnull
+    WHERE ff.SK_DECISOR IN (80,84,85,86) and not SUBGRUPO isnull
       union all
       SELECT 
         case 
         	WHEN SK_DECISOR = 80 then 80
         	when SK_DECISOR = 84 then 84
         	when SK_DECISOR = 85 then 85
+        	when SK_DECISOR = 86 then 86
         	else null end as SK_DECISOR,
         CASE 
             WHEN SK_DECISOR = 80 AND SUBGRUPO LIKE '%DIESEL%' THEN '5.01' 
             when SK_DECISOR = 84 THEN '5.05'
 			when SK_DECISOR = 85 THEN '5.04'
+			when SK_DECISOR = 86 THEN '5.04'
 			else '5.04'
         END as COD_CONTA_NV2,
         CASE 
@@ -69,7 +75,7 @@ WITH BASE_FATURAMENTO AS (
             ELSE SUBGRUPO 
         END as SUBGRUPO_AJUSTADO
     FROM DRE.FINAL_FATURAMENTO ff
-    WHERE ff.SK_DECISOR IN (80,84,85) and not SUBGRUPO ISNULL
+    WHERE ff.SK_DECISOR IN (80,84,85,86) and not SUBGRUPO ISNULL
 )
 SELECT 
     DISTINCT

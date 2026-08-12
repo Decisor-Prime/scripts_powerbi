@@ -12,7 +12,7 @@ with DRE_2026 as (
 			sum(ff.qtde)		AS qtd
 		from dre.final_faturamento ff
 		where cod_conta_nv2 is not null
-			and ff.sk_decisor in (2,77,80,84,85)
+			and ff.sk_decisor in (2,77,80,84,85,86)
 			GROUP BY 1,2,3,4,5,6
 		UNION ALL
 	--RECARGA CELULARES 1.7--
@@ -27,7 +27,7 @@ with DRE_2026 as (
 			0 as qtd
 		from dre.final_faturamento fd
 		where cod_conta_nv2 is null and grupo is null
-			 and fd.sk_decisor in (2,77,80,84,85)
+			 and fd.sk_decisor in (2,77,80,84,85,86)
 		group by 1,2,3,4,5,6
 		UNION ALL
 	--RECEITAS COMPANHIAS (REBATES) 1.8--
@@ -43,7 +43,7 @@ with DRE_2026 as (
 		from dre.final_despesas fd
 		where cod_conta_nv2 is not null
 			 AND cod_conta_nv2 in ('1.08')
-			 and fd.sk_decisor in (2,77,80,84,85)
+			 and fd.sk_decisor in (2,77,80,84,85,86)
 		UNION ALL
 	--PERDAS 1.9--
 		select
@@ -57,7 +57,7 @@ with DRE_2026 as (
 			0 as qtd
 		from dre.final_perdas fp
 		where cod_conta_nv2 is not null
-		and fp.sk_decisor in (2,77,80,84,85)
+		and fp.sk_decisor in (2,77,80,84,85,86)
 	--RECEITAS DIVERSAS 1.10--
 		union ALL
 			select
@@ -71,7 +71,7 @@ with DRE_2026 as (
 			0 as qtd
 		from dre.final_notas_avulcas
 		where cod_conta_nv2 in ('1.10')
-		and sk_decisor in (2,77,80,84,85)
+		and sk_decisor in (2,77,80,84,85,86)
 	--FRETE CUSTO TRR--
 		union ALL
 			select
@@ -101,7 +101,7 @@ with DRE_2026 as (
 			sum(qtde)			as qtd
 		from dre.final_faturamento cff
 		where cod_conta_nv2 is not null
-			and cff.sk_decisor in (2,77,80,84,85)
+			and cff.sk_decisor in (2,77,80,84,85,86)
 			GROUP BY 1,2,3,4,5,6
 		UNION ALL 
 	--CUSTO RECARGA CELULARES 1.7--
@@ -131,7 +131,7 @@ with DRE_2026 as (
 			0 qtd
 		from dre.final_despesas cfd
 		where cod_conta_nv2 in ('1.08')
-			and cfd.sk_decisor in (2,77,80,84,85)
+			and cfd.sk_decisor in (2,77,80,84,85,86)
 		union all 
 	--CUSTO PERDAS 1.9--
 		select
@@ -145,7 +145,7 @@ with DRE_2026 as (
 			0 as qtd
 		from dre.final_perdas cfp
 		where 
-		 cfp.sk_decisor in (2,77,80,84,85)
+		 cfp.sk_decisor in (2,77,80,84,85,86)
 	--CUSTO RECEITAS DIVERSAS 1.10--
 		union ALL
 		select
@@ -159,7 +159,7 @@ with DRE_2026 as (
 			0 qtd
 		from dre.final_notas_avulcas
 		where cod_conta_nv2 in ('1.10')
-		and sk_decisor in (2,77,80,84,85)
+		and sk_decisor in (2,77,80,84,85,86)
 	--CUSTO FRETE TRR--
 		union ALL
 			select
@@ -275,7 +275,7 @@ with DRE_2026 as (
 		from dre.final_despesas
 			WHERE cod_conta_nv2 not in ('1.01','1.02','1.03','1.04','1.05','1.08','4.11','4.07')
 			and cod_conta_nv2 is not null
-			and sk_decisor in (2,77,80,84,85)
+			and sk_decisor in (2,77,80,84,85,86)
 			AND ((idempresa IN (1019) AND dtlcto >= '20251201')
 			   OR 
 			    (idempresa NOT IN (1019)))
@@ -293,7 +293,7 @@ with DRE_2026 as (
 			'cashback' origem
 		from dre.final_cashback
 		where cod_conta_nv2 is not null
-		and sk_decisor in (2,77,80,84,85)
+		and sk_decisor in (2,77,80,84,85,86)
 		-- TAXAS DE CARTÕES --
 		union all 
 			select
@@ -308,7 +308,7 @@ with DRE_2026 as (
 			'txs_cartoes' origem
 		from dre.final_taxas_cartoes
 		where cod_conta_nv2 is not null
-		and sk_decisor in (2,77,80,84,85)
+		and sk_decisor in (2,77,80,84,85,86)
 	--DESPESAS DIVERSAS 1.10--
 		union ALL
 			select
@@ -323,7 +323,7 @@ with DRE_2026 as (
 			'notas_avulcas' origem
 		from dre.final_notas_avulcas
 		where cod_conta_nv2 not in ('1.10')
-		and sk_decisor in (2,77,80,84,85)
+		and sk_decisor in (2,77,80,84,85,86)
 	-- JUROS RECEBIDOS --
 		union all 
 			select
@@ -338,7 +338,7 @@ with DRE_2026 as (
 			'juros_rcbidos' origem
 		from dre.final_juros_recebidos
 		where cod_conta_nv2 is not null
-		and sk_decisor in (2,77,80,84,85)
+		and sk_decisor in (2,77,80,84,85,86)
 	)
 	select * from DRE_2026
 	where dtlcto >= '20260101'

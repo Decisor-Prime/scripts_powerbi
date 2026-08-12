@@ -12,7 +12,7 @@ left join dre.st_contas_obtidas sco on sco.codcliente = cf.codcliente
 	and sco.idconta = cf.idconta
 left join dre.dim_dre_contas dcf on dcf.sk_decisor  = sco.codcliente 
 	and dcf.cod_conta_nv2::int = sco.conta_para::int
-	where cf.codcliente in (2,77,80,84,85)
+	where cf.codcliente in (2,77,80,84,85,86)
 	and cf.id_ativo 
 	and 
 		case 
