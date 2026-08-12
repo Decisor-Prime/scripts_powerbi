@@ -30,7 +30,7 @@ WITH BASE_FATURAMENTO AS (
         	WHEN SK_DECISOR = 80 then 80
         	when SK_DECISOR = 84 then 84
         	when SK_DECISOR = 85 then 85
-        	when SK_DECISOR = 85 then 86
+        	when SK_DECISOR = 86 then 86
         	else null end as SK_DECISOR,
         CASE 
             WHEN SK_DECISOR = 80 AND SUBGRUPO LIKE '%DIESEL%' THEN '4.01' 
@@ -85,7 +85,9 @@ SELECT
     SUBGRUPO_AJUSTADO as SUBGRUPO,
     SK_DECISOR || '-' || COD_CONTA_NV2 || '-' || SUBGRUPO_AJUSTADO as REL_DIM_CONTAS
 FROM BASE_FATURAMENTO
-union ALL
+
+union all
+
 select 
 distinct
 codcliente sk_decisor,
