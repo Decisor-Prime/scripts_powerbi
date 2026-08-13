@@ -138,7 +138,7 @@ with DRE_2026 as (
 			sk_decisor,
 			idempresa,
 			dtlcto,
-			'4.09'::text as cod_conta_nv2 ,
+			cod_conta_nv2 ,
 			grupo,
 			subgrupo,
 			vlr,
@@ -192,13 +192,7 @@ with DRE_2026 as (
 			and ct.grupo = ft.grupo
 			and ct.subgrupo = ft.subgrupo	
 		where ft.cod_conta_nv2 is not null
-		group by 
-			ft.sk_decisor,
-			ft.idempresa,
-			ft.dtlcto,
-			concat('5.',split_part(ft.cod_conta_nv2,'.',2)),
-			ft.grupo,
-			ft.subgrupo
+		group by 1,2,3,4,5,6
 	)
 	
 	------------------------
