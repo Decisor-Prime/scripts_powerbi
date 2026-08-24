@@ -72,6 +72,19 @@ with DRE_2026 as (
 		from dre.final_notas_avulcas
 		where cod_conta_nv2 in ('1.10')
 		and sk_decisor in (2,77,80,84,85,86)
+		union all
+		SELECT
+			sk_decisor,
+			idempresa,
+			dtlcto,
+			cod_conta_nv2,
+			grupo,
+			subgrupo,
+			vlr,
+			0 qtd
+		from dre.final_despesas
+			WHERE cod_conta_nv2 in ('1.10')
+			and sk_decisor in (2,77,80,84,85,86)
 	--FRETE CUSTO TRR--
 		union ALL
 			select
@@ -160,6 +173,19 @@ with DRE_2026 as (
 		from dre.final_notas_avulcas
 		where cod_conta_nv2 in ('1.10')
 		and sk_decisor in (2,77,80,84,85,86)
+		union all
+		SELECT
+			sk_decisor,
+			idempresa,
+			dtlcto,
+			'4.10' cod_conta_nv2,
+			grupo,
+			subgrupo,
+			0 vlr,
+			0 qtd
+		from dre.final_despesas
+			WHERE cod_conta_nv2 in ('1.10')
+			and sk_decisor in (2,77,80,84,85,86)
 	--CUSTO FRETE TRR--
 		union ALL
 			select
@@ -267,7 +293,7 @@ with DRE_2026 as (
 			0 as qtd,
 			'final_despesas' origem
 		from dre.final_despesas
-			WHERE cod_conta_nv2 not in ('1.01','1.02','1.03','1.04','1.05','1.08','4.11','4.07')
+			WHERE cod_conta_nv2 not in ('1.01','1.02','1.03','1.04','1.05','1.08','4.10','4.11','4.07')
 			and cod_conta_nv2 is not null
 			and sk_decisor in (2,77,80,84,85,86)
 			AND ((idempresa IN (1019) AND dtlcto >= '20251201')
