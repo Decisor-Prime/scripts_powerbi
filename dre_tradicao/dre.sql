@@ -1,5 +1,6 @@
 with DRE_2026 as (
 	WITH FATURAMENTO AS (
+	 with faturamento_agrupado as (
 	--FATURAMENTO COMB E MERC 1.0--
 		SELECT
 			ff.sk_decisor			,
@@ -99,9 +100,12 @@ with DRE_2026 as (
 		from dre.final_despesas fd2 
 		where cod_conta_nv2 in ('4.11')
 		and sk_decisor in (80)
+		) 
+		select 
+			sk_decisor,	idempresa,	dtlcto,	cod_conta_nv2,	grupo,	subgrupo,sum(vlr) vlr,sum(qtd) qtd from faturamento_agrupado group by 1,2,3,4,5,6
 	),
-	
 	CUSTO AS (
+		with custo_agrupado as (
 	--CUSTO COMB E MERC 4.0--	
 		SELECT
 			sk_decisor						,
@@ -200,8 +204,13 @@ with DRE_2026 as (
 		from dre.final_despesas fd2 
 		where cod_conta_nv2 in ('4.11')
 		and sk_decisor in (80)
-	 ),
-	MARGEM AS (
+			)
+		select 
+			sk_decisor, idempresa, dtlcto, cod_conta_nv2, grupo, subgrupo, sum(vlr) as vlr, sum(qtd) as qtd
+		from custo_agrupado
+		group by 1,2,3,4,5,6
+	 	),
+	 	MARGEM as (
 		SELECT 
 			ft.sk_decisor						,
 			ft.idempresa						,
@@ -216,11 +225,10 @@ with DRE_2026 as (
 			and ct.idempresa = ft.idempresa
 			and ct.dtlcto = ft.dtlcto
 			and ct.grupo = ft.grupo
-			and ct.subgrupo = ft.subgrupo	
+			and ct.subgrupo = ft.subgrupo
 		where ft.cod_conta_nv2 is not null
 		group by 1,2,3,4,5,6
 	)
-	
 	------------------------
 	-- INÍCIO FATURAMENTO -
 	------------------------
