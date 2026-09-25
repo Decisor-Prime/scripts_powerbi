@@ -15,13 +15,12 @@ left join dre.dim_classificacao_empresa ce on ce.sk_decisor = fr.sk_decisor
 	and ce.id = fr.id_classificacao_empresa 
 left join stg.stg_dempresas sd on sd.codcliente = fr.sk_decisor 
 	and sd.idempresa = fr.idempresa
-left join stg_tradicao.temp_tradicao_bandeiras ttb on fr.sk_decisor = 2 
+left join stg_tradicao.temp_tradicao_bandeiras ttb 
+	on fr.sk_decisor = ttb.rede
 	and ttb.filial = fr.idempresa 
 where fr.active
 	and ce.sk_decisor in (2,77)
-	
 union all
-
 select
     el.sk_decisor || '-' || el.idempresa as bkey_empresa,
 	el.sk_decisor as sk_decisor,
