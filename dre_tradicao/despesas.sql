@@ -39,6 +39,7 @@ conta,
 razaosocial,
 dtvencimento as vencimento ,
 documento,
+null as historicofinanceiro,
 observacao,
 situacao,
 vlrdespesa
