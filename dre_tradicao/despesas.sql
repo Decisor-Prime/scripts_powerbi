@@ -1,7 +1,6 @@
 SELECT
 	    d.codcliente || '-' || coalesce(sfr.idempresarateio,d.idempresa::bigint )								AS bkey_empresa,
 	    d.emissao::date,
-
 case
 		    when d.codcliente = 2 and d.emissao >= '20260401' then coalesce(d.dataentrada::date, d.emissao::date)											
 		    else d.emissao::date
@@ -11,6 +10,7 @@ case
 	   sp.razaosocial,
 	    d.vencimento::date,
 		d.documento,
+		d.historicofinanceiro, 
 	    d.observacao,
 	    d.situacao,
 	    cast(CASE
