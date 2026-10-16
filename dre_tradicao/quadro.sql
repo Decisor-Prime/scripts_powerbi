@@ -1,5 +1,5 @@
 select
-	competencia,
+	competencia::date,
 	'2-'||filial filial,
 	orcado,
 	"final" quadro,
