@@ -1,0 +1,27 @@
+select
+	pp.codcliente,
+	pp.unidadedenegocioid,
+	pp.idpessoa,
+	pp.sigla,
+	pp.percentualprazo,
+	pp.percentualvista,
+	pp.valordescontoprazo,
+	pp.valordescontovista,
+	ts.precovenda,
+pp.preco_fixo_prazo,
+pp.preco_fixo_vista,
+	case
+		when pp.valordescontoprazo >= pp.percentualprazo then ts.precovenda - pp.valordescontoprazo
+		else ts.precovenda - ((pp.percentualprazo/100)*ts.precovenda)
+	end as preco_venda_prazo,
+	case
+		when pp.valordescontovista >= pp.percentualvista then ts.precovenda - pp.valordescontovista
+		else ts.precovenda - ((pp.percentualvista/100)*ts.precovenda)
+	end as preco_venda_avista
+from
+	stg.stg_pessoas_precos pp
+left join stg.temp_stg_dproduto_tanque_siglapreco ts on ts.codcliente = pp.codcliente and ts.idempresa = pp.unidadedenegocioid and ts.sigla = pp.sigla
+
+where
+pp.codcliente = 2
+	and unidadedenegocioid notnull
