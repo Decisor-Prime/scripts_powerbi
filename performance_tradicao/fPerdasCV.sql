@@ -1,3 +1,3 @@
 select
 *
-from vw_fperdas_cv vfc
+from dw.vw_fperdas_cv vfc

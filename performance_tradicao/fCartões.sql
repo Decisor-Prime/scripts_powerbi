@@ -1,3 +1,3 @@
 select
 *
-from vw_fCartoes
+from dw.vw_fCartoes

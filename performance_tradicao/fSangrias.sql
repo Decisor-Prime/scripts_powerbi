@@ -1,3 +1,3 @@
 select 
 *
-from vw_fsangrias
+from dw.vw_fsangrias
