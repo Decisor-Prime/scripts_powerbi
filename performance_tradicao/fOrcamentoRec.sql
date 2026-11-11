@@ -1,7 +1,7 @@
 select
 	idempresa as posto,
 	null as conta,
-	grupo as ""apConta Lanc"",
+	grupo as "apConta Lanc",
 	dtlcto::date as data,
 	vlr as orcamento,
 	qtd,
