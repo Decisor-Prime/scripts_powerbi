@@ -1,10 +1,10 @@
 select 
 	codcliente sk_decisor
 	,idempresa "idEmpresa"
-	,fc.dtlcto "dtLcto"
+	,fc.dtlcto::date "dtLcto"
 	,fc.idpessoa "idPessoa"
-	,fc.dtvencimento "dtVencimento"
-	,fc.dt_baixa "dtPagamento"
+	,fc.dtvencimento::date "dtVencimento"
+	,fc.dt_baixa::date "dtPagamento"
 	,fc.nmstatus "nmStatus"
 	,fonte "Fonte"
 	,numdocumento "Documento"

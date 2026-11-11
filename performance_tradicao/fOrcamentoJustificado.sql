@@ -1,10 +1,12 @@
 select
 	sk_decisor as codcliente,
-	idempresa,
-	idconta,
+	sk_decisor||'-'||idempresa idempresa,
+	sk_decisor||'-'||idconta idconta,
 	justificativa,
 	nome as usuario,
-	""data""
+	"data"
 from
 	dre.orc_justificado_st
-where ativa = true and sk_decisor = 2
+where ativa = true
+and sk_decisor = 2
+
