@@ -1,14 +1,14 @@
 SELECT
-	"sk_decisor",
 	"pkId",
-	cpf,
-	"idEmpresa",
+	"sk_decisor",
+	"sk_decisor"||'-'||"idEmpresa" "idEmpresa",
 	"dtLcto"::date,
 	datahora,
 	"HoraVenda",
-	COALESCE("idCliente",-1) "idCliente",
-	idvendedor,
-	"cdProd",
+	"sk_decisor"||'-'||idvendedor idvendedor,
+	"sk_decisor"||'-'||COALESCE("idCliente",-1) "idCliente",
+	cpf,
+	"sk_decisor"||'-'||"cdProd" "cdProd",
 	"Qtde",
 	"prUnitario",
 	vrdesconto,
@@ -16,4 +16,4 @@ SELECT
 FROM
 	stg_tradicao.vendas_tradicao
 WHERE
-	sk_decisor = 2
+	sk_decisor IN (2,77)
