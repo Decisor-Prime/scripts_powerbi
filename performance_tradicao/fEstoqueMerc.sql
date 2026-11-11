@@ -12,5 +12,5 @@ left join dw.dim_produtos dm
 	and em.idproduto = dm.idproduto 
 where
 	em.sk_decisor in (2,77)
-	em.qtdeestoque <> 0
+	and em.qtdeestoque <> 0
 	and dm.idgrupo <> '2-440'
