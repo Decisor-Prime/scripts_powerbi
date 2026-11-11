@@ -19,11 +19,11 @@ pp.preco_fixo_vista,
 		else ts.precovenda - ((pp.percentualvista/100)*ts.precovenda)
 	end as preco_venda_avista,
 	CASE
-		WHEN sigla = 'ARL' THEN 'ARLA'
-		WHEN sigla = 'DA' THEN 	'DS10'
-		WHEN sigla = 'DC' THEN 	'DS500'
-		WHEN sigla = 'DS' THEN 'DS10'
-		ELSE sigla
+		WHEN pp.sigla = 'ARL' THEN 'ARLA'
+		WHEN pp.sigla = 'DA' THEN 	'DS10'
+		WHEN pp.sigla = 'DC' THEN 	'DS500'
+		WHEN pp.sigla = 'DS' THEN 'DS10'
+		ELSE pp.sigla
 	END "apProduto"
 from
 	stg.stg_pessoas_precos pp

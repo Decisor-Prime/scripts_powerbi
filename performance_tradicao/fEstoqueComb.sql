@@ -1,7 +1,6 @@
 select
-	'C-' || idempresa || '-' || pk as idproduto,
-em.*
+	*
 from
-	stg.stg_dproduto_estoque_tanques em
+	dw.fato_estoque_comb ec
 where
-	em.codcliente = 2
+	ec.sk_decisor in (2,77)

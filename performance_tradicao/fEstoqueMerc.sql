@@ -1,13 +1,16 @@
 select
-	em.codcliente,
-	em.idempresa,
-	em.idproduto,
-	dm.idgrupo,
-	em.estoque,
-	em.data_registro as data_estoque
+	em.sk_decisor,
+	em.idempresa "idEmpresa",
+	em.idproduto "idProduto",
+	em.qtdeestoque "qtdeEstoque",
+	current_date::date as "Data",
+	dm.idgrupo
 from
-	stg.stg_dproduto_estoque_merc em
-	left join stg.stg_dproduto_merc dm on em.codcliente = dm.codcliente and em.idproduto = dm.idproduto 
-
+	dw.fato_estoque_produto em
+left join dw.dim_produtos dm 
+	on em.sk_decisor = dm.sk_decisor 
+	and em.idproduto = dm.idproduto 
 where
-	em.codcliente = 2
+	em.sk_decisor in (2,77)
+	em.qtdeestoque <> 0
+	and dm.idgrupo <> '2-440'

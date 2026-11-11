@@ -1,6 +1,7 @@
 select
-	id_empresa as idempresa,
-	'C-' || id_empresa || '-' || pk as idproduto,
+	sk_decisor,
+	sk_decisor|| '-' || id_empresa  idempresa,
+	sk_decisor|| '-' ||'C' || id_empresa || pk as idproduto,
 	volume as qtdestoque,
 	--tipo_combustivel,
 	dt_posicao as data,
@@ -10,12 +11,13 @@ select
 from
 	dw.fato_posicao_estoque_comb
 where
-	sk_decisor = 2
+	sk_decisor IN (2,77)
 	and volume <> 0
 union all
 select
-	id_empresa as idempresa,
-	id_produto::text as idproduto,
+	sk_decisor,
+	sk_decisor||'-'||id_empresa as idempresa,
+	sk_decisor||'-'||id_produto::text as idproduto,
 	qtdeestoque,
 	data_geracao as data,
 	precocusto,
@@ -24,6 +26,6 @@ select
 from
 	dw.f_posicao_estoque_merc
 where
-	sk_decisor = 2
+	sk_decisor IN (2,77)
 	and qtdeestoque <> 0
 	and id_ativo
