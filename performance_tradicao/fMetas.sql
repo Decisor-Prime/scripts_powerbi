@@ -1,14 +1,14 @@
 SELECT
 codcliente sk_decisor,
-codcliente||'-'||idempresa idempresa ,
-data_meta,
-codcliente||'-'||idsubgrupo,
-metapor,
-quantidadevalor,
-tipometa,
-sigla,
-mix,
-metamarkup
+codcliente||'-'||idempresa "idEmpresa",
+codcliente||'-'||split_part(idsubgrupo::text,'.',1) "idSubgrupo",
+to_date(data_meta, 'MM/YYYY') "DataMeta",
+metapor "MetaPor",
+quantidadevalor "QuantidadeValor",
+tipometa "TipoMeta",
+sigla "Sigla",
+mix "Mix",
+metamarkup "MetaMrg"
 FROM
 	stg.stg_fmetas sf
 WHERE
