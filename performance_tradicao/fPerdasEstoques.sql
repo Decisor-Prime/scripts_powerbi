@@ -1,3 +1,3 @@
 select
 	*
-from dw.vw_fperdas_food
+from public.vw_fperdas_food
