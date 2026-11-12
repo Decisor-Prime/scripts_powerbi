@@ -22,7 +22,8 @@ select
 FROM
 	dw.dim_pessoas dp
 left join dw.dim_empresas de 
-	on de.nmcpfcnpj = dp.numcpfcnpj
+	on de.sk_decisor = dp.sk_decisor 
+	and de.nmcpfcnpj = dp.numcpfcnpj
 WHERE
 	dp.sk_decisor IN (2,77)
 union all

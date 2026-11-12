@@ -8,7 +8,8 @@ SELECT
 FROM
 	dw.dim_vendedor dv  
 left join stg_tradicao.temp_tradicao_trocadores tt 
-	on tt.cpf = dv.nmcpf 
+	on dv.sk_decisor = 2
+	and tt.cpf = dv.nmcpf 
 		
 WHERE
 	dv.sk_decisor in (2,77)
