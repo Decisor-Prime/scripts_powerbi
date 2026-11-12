@@ -11,7 +11,7 @@ SELECT
 	,ttb.bandeira
 	,ttb.ga
 	,ttb.tipo 
-	,ttb."Assessor Loja" assesspr
+	,ttb."Assessor Loja" assessor
 	,ttb.loja 
 FROM
 	dw.dim_empresas de
