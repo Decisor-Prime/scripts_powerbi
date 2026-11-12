@@ -2,7 +2,7 @@ SELECT
 codcliente sk_decisor,
 codcliente||'-'||idempresa idempresa ,
 data_meta,
-idsubgrupo,
+codcliente||'-'||idsubgrupo,
 metapor,
 quantidadevalor,
 tipometa,
