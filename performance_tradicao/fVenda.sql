@@ -14,6 +14,6 @@ SELECT
 	vrdesconto,
 	"prCusto"
 FROM
-	stg_tradicao.vendas_tradicao
+	stg_tradicao.vendas_tradicao_2_1
 WHERE
 	sk_decisor IN (2,77)
