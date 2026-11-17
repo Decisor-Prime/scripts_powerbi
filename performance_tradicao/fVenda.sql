@@ -8,7 +8,7 @@ SELECT
 	"sk_decisor"||'-'||idvendedor idvendedor,
 	"sk_decisor"||'-'||COALESCE("idCliente",-1) "idCliente",
 	cpf,
-	"sk_decisor"||'-'||"cdProd" "cdProd",
+	"cdProd" "cdProd",
 	"Qtde",
 	"prUnitario",
 	vrdesconto,
