@@ -6,8 +6,7 @@ select
 		else idsubgrupo end	idsubgrupo
 	,nmproduto "nmProduto"
 	,approduto "apProduto"
-	,case
-		when apgrupo = 'COMB' then 'COMBUSTIVEIS'
+	, case when produto_nv1 = 'COMBUSTÍVEIS' then 'COMBUSTIVEIS'
 		else apgrupo end "nmGrupo"
 	,produto_nv1 "Grupo"
 	,produto_nv2 "nmCategoria"
