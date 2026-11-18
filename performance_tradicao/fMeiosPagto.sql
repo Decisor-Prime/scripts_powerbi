@@ -1,3 +1,3 @@
 select 
 *
-from vw_fMeios_pgto
+from dw.vw_fMeios_pgto
